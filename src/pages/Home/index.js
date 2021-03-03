@@ -1,4 +1,6 @@
 import React, { Component } from "react"; 
+import {Link} from 'react-router-dom';
+import './home.css'
 
 class Home extends Component{
 
@@ -19,15 +21,25 @@ class Home extends Component{
         fetch(url)
         .then((r) =>r.json())
         .then((json) => {
-            this.setState({this: json});
+            this.setState({filmes: json});
         console.log(json);
     });
 }
 
     render(){
         return(
-            <div>
-                Pagina Home
+            <div className = "conteiner">
+                <div className="lista-filmes">
+                { this.state.filmes.map((filme) => {
+                    return(
+                        <article key={filme.id} className="filme">
+                            <strong> {filme.nome}</strong>
+                            <img src={filme.foto} alt="Capa"/>
+                            <Link to={`/filme/${filme.id}`}>Acessar</Link>
+                        </article>
+                    );
+                })}
+                </div>
             </div>
         );
     }
