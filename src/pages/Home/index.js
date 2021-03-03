@@ -11,16 +11,17 @@ class Home extends Component{
     }
 
     componentDidMount(){
-        //fetch()
+        this.loadFilmes();
     }
     loadFilmes(){
         //https://sujeitoprogramador.com/r-api/?api=filmes
-        let url = "https://sujeitoprogramador.com/r-api/?api=filmes"
+        let url = "https://sujeitoprogramador.com/r-api/?api=filmes";
         fetch(url)
         .then((r) =>r.json())
         .then((json) => {
-        
-    })
+            this.setState({this: json});
+        console.log(json);
+    });
 }
 
     render(){
